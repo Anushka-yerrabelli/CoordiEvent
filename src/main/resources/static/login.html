@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | CoordiEvent</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { primary: '#4f46e5', secondary: '#1e293b' } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 flex items-center justify-center min-h-screen font-sans">
+
+    <div class="max-w-md w-full mx-4">
+        <!-- Logo -->
+        <div class="text-center mb-8 cursor-pointer" onclick="window.location.href='/'">
+            <i class="fa-solid fa-calendar-check text-primary text-4xl mb-2"></i>
+            <h1 class="text-3xl font-extrabold text-secondary">CoordiEvent</h1>
+            <p class="text-gray-500 mt-2">Welcome back! Please enter your details.</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <!-- Tabs -->
+            <div class="flex border-b text-center text-sm font-semibold">
+                <button id="tab-login" class="flex-1 py-4 text-primary border-b-2 border-primary focus:outline-none transition">Sign In</button>
+                <button id="tab-register" class="flex-1 py-4 text-gray-500 hover:text-gray-700 bg-gray-50 hover:bg-white focus:outline-none transition">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="form-login" class="p-8">
+                <form id="login-form" class="space-y-5">
+                    <div id="login-error" class="hidden bg-red-50 text-red-600 p-3 rounded-lg text-sm border border-red-100"></div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input type="text" id="login-username" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="login-password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition">
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-indigo-600 text-white font-semibold py-3 rounded-lg transition duration-300 shadow-md flex justify-center">
+                        <span id="login-btn-text">Sign In</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="form-register" class="p-8 hidden">
+                <form id="register-form" class="space-y-4">
+                    <div id="register-error" class="hidden bg-red-50 text-red-600 p-3 rounded-lg text-sm border border-red-100"></div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="reg-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <input type="text" id="reg-username" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="reg-email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="reg-password" required minlength="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-xs text-gray-500 font-normal">(Required for Providers)</span></label>
+                        <input type="tel" id="reg-phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none">
+                    </div>
+                    <div id="portfolio-container" class="hidden">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Portfolio URL <span class="text-xs text-gray-500 font-normal">(Link to your work)</span></label>
+                        <input type="url" id="reg-portfolio" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary outline-none" placeholder="https://...">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">I am a...</label>
+                        <div class="grid grid-cols-2 gap-4 mt-2">
+                            <label class="border rounded-lg p-3 text-center cursor-pointer hover:bg-gray-50 flex items-center justify-center transition">
+                                <input type="radio" name="role" value="CUSTOMER" checked class="mr-2 text-primary focus:ring-primary"> Customer
+                            </label>
+                            <label class="border rounded-lg p-3 text-center cursor-pointer hover:bg-gray-50 flex items-center justify-center transition">
+                                <input type="radio" name="role" value="PROVIDER" class="mr-2 text-primary focus:ring-primary"> Service Provider
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-primary hover:bg-indigo-600 text-white font-semibold py-3 rounded-lg mt-4 transition duration-300 shadow-md">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+        <p class="text-center text-sm text-gray-500 mt-6">&copy; 2026 CoordiEvent. All rights reserved.</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

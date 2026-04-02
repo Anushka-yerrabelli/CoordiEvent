@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | CoordiEvent</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar-item.active { background-color: #eef2ff; color: #4f46e5; border-right: 4px solid #4f46e5; }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] }, colors: { primary: '#4f46e5', secondary: '#1e293b' } } }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-xl flex flex-col h-full hidden md:flex">
+        <div class="p-6 border-b cursor-pointer" onclick="window.location.href='/'">
+            <h1 class="text-2xl font-extrabold text-secondary flex items-center">
+                <i class="fa-solid fa-calendar-check text-primary mr-2"></i> CoordiEvent
+            </h1>
+        </div>
+        <div class="p-6 border-b">
+            <p class="text-sm text-gray-400 uppercase tracking-wider font-bold mb-1">Signed in as</p>
+            <p class="font-bold text-gray-800" id="user-name">Loading...</p>
+            <span class="inline-block mt-1 px-2 py-1 bg-indigo-50 text-primary text-xs font-bold rounded" id="user-role">...</span>
+        </div>
+        <nav class="flex-grow py-4" id="sidebar-nav">
+            <!-- Injected via JS -->
+        </nav>
+        <div class="p-4 border-t mt-auto">
+            <button onclick="Api.logout()" class="w-full flex items-center text-gray-600 hover:text-red-500 hover:bg-red-50 p-3 rounded-lg transition duration-200">
+                <i class="fa-solid fa-sign-out-alt w-6"></i> <span class="font-medium">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Mobile Header -->
+    <div class="md:hidden fixed top-0 left-0 right-0 bg-white shadow-sm h-16 flex items-center justify-between px-4 z-50">
+        <h1 class="text-xl font-bold text-secondary cursor-pointer" onclick="window.location.href='/'">CoordiEvent</h1>
+        <button onclick="Api.logout()" class="text-red-500 p-2"><i class="fa-solid fa-sign-out-alt"></i></button>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-1 bg-gray-50 flex flex-col h-screen overflow-hidden relative pt-16 md:pt-0">
+        <header class="bg-white shadow-sm shrink-0">
+            <div class="px-8 py-5 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-800" id="page-title">Overview</h2>
+                <div class="text-sm text-gray-500 hidden md:block" id="current-date"></div>
+            </div>
+        </header>
+
+        <div class="p-8 flex-1 overflow-auto" id="main-content">
+            <!-- Dynamic Content -->
+            <div class="flex items-center justify-center h-full">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Review Modal -->
+    <div id="review-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300 relative" id="review-modal-content">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h3 class="text-xl font-bold text-gray-800">Leave a Review</h3>
+                <button onclick="closeReviewModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <form id="submit-review-form">
+                    <input type="hidden" id="review-booking-id">
+                    <input type="hidden" id="review-rating-val" value="5">
+                    
+                    <div class="mb-6 text-center">
+                        <p class="text-gray-600 mb-2 font-medium">Rate your experience</p>
+                        <div class="flex justify-center gap-2 text-4xl" id="star-rating-container">
+                            <i class="fa-solid fa-star text-yellow-400 cursor-pointer star-btn transition-colors hover:scale-110" data-val="1"></i>
+                            <i class="fa-solid fa-star text-yellow-400 cursor-pointer star-btn transition-colors hover:scale-110" data-val="2"></i>
+                            <i class="fa-solid fa-star text-yellow-400 cursor-pointer star-btn transition-colors hover:scale-110" data-val="3"></i>
+                            <i class="fa-solid fa-star text-yellow-400 cursor-pointer star-btn transition-colors hover:scale-110" data-val="4"></i>
+                            <i class="fa-solid fa-star text-yellow-400 cursor-pointer star-btn transition-colors hover:scale-110" data-val="5"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                        <textarea id="review-comment" required rows="4" class="w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none" placeholder="Tell us about the service..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-xl shadow-md transition duration-300">
+                        Submit Review
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews Listing Modal -->
+    <div id="reviews-list-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg mx-4 transform scale-95 transition-transform duration-300 flex flex-col max-h-[80vh]" id="reviews-list-modal-content">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50 rounded-t-2xl shrink-0">
+                <h3 class="text-xl font-bold text-gray-800" id="reviews-modal-title">Service Reviews</h3>
+                <button onclick="closeReviewsListModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fa-solid fa-times text-xl"></i>
+                </button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-grow" id="reviews-list-container">
+                <!-- Injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Details Modal -->
+    <div id="vendor-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md mx-4 transform scale-95 transition-transform duration-300" id="vendor-modal-content">
+            <!-- Injected dynamically -->
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[60] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm mx-4 transform scale-95 transition-transform duration-300">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 bg-yellow-100 text-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fa-solid fa-triangle-exclamation text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-800 mb-2" id="confirm-modal-title">Please Confirm</h3>
+                <p class="text-gray-600 mb-8" id="confirm-modal-message">Are you sure you want to proceed?</p>
+                <div class="flex gap-4">
+                    <button id="confirm-modal-cancel" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 rounded-xl transition">Cancel</button>
+                    <button id="confirm-modal-ok" class="flex-1 bg-primary hover:bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-md transition">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
