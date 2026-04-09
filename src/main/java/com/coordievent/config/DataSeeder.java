@@ -167,7 +167,7 @@ public class DataSeeder {
                 service3.setLocation("Hyderabad");
                 service3.setPrice(new BigDecimal("200000.00"));
                 service3.setBookingType(BookingType.MULTI_DAY);
-                service3.setImageUrl("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=400&q=80");
+                service3.setImageUrl("https://images.unsplash.com/photo-1545300063-e3c3b0eb62ea?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service3);
                 
                 Service service4 = new Service();
@@ -178,7 +178,7 @@ public class DataSeeder {
                 service4.setLocation("Bangalore");
                 service4.setPrice(new BigDecimal("75000.00"));
                 service4.setBookingType(BookingType.HOURLY);
-                service4.setImageUrl("https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=400&q=80");
+                service4.setImageUrl("https://images.unsplash.com/photo-1561501878-aabd62634533?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service4);
 
                 Service service5 = new Service();
@@ -189,7 +189,7 @@ public class DataSeeder {
                 service5.setLocation("Mumbai");
                 service5.setPrice(new BigDecimal("120000.00"));
                 service5.setBookingType(BookingType.DAILY);
-                service5.setImageUrl("https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=400&q=80");
+                service5.setImageUrl("https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service5);
 
                 // Sample Services - FOOD
@@ -212,7 +212,7 @@ public class DataSeeder {
                 service7.setLocation("Mumbai");
                 service7.setPrice(new BigDecimal("180000.00")); 
                 service7.setBookingType(BookingType.DAILY);
-                service7.setImageUrl("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=80");
+                service7.setImageUrl("https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service7);
 
                 Service service8 = new Service();
@@ -223,7 +223,7 @@ public class DataSeeder {
                 service8.setLocation("Hyderabad");
                 service8.setPrice(new BigDecimal("300000.00")); 
                 service8.setBookingType(BookingType.DAILY);
-                service8.setImageUrl("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=80");
+                service8.setImageUrl("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service8);
 
                 Service service9 = new Service();
@@ -234,7 +234,7 @@ public class DataSeeder {
                 service9.setLocation("Bangalore");
                 service9.setPrice(new BigDecimal("80000.00")); 
                 service9.setBookingType(BookingType.HOURLY);
-                service9.setImageUrl("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=80");
+                service9.setImageUrl("https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service9);
 
                 Service service10 = new Service();
@@ -245,7 +245,7 @@ public class DataSeeder {
                 service10.setLocation("Mumbai");
                 service10.setPrice(new BigDecimal("60000.00")); 
                 service10.setBookingType(BookingType.DAILY);
-                service10.setImageUrl("https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=400&q=80");
+                service10.setImageUrl("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service10);
 
                 // Sample Services - DECOR
@@ -268,7 +268,7 @@ public class DataSeeder {
                 service12.setLocation("Mumbai");
                 service12.setPrice(new BigDecimal("85000.00"));
                 service12.setBookingType(BookingType.DAILY);
-                service12.setImageUrl("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&q=80");
+                service12.setImageUrl("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service12);
 
                 Service service13 = new Service();
@@ -279,7 +279,7 @@ public class DataSeeder {
                 service13.setLocation("Hyderabad");
                 service13.setPrice(new BigDecimal("150000.00"));
                 service13.setBookingType(BookingType.DAILY);
-                service13.setImageUrl("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&q=80");
+                service13.setImageUrl("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service13);
                 
                 Service service14 = new Service();
@@ -290,7 +290,7 @@ public class DataSeeder {
                 service14.setLocation("Bangalore");
                 service14.setPrice(new BigDecimal("30000.00"));
                 service14.setBookingType(BookingType.HOURLY);
-                service14.setImageUrl("https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&q=80");
+                service14.setImageUrl("https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service14);
 
                 // Sample Services - MUSIC
@@ -313,7 +313,7 @@ public class DataSeeder {
                 service16.setLocation("Mumbai");
                 service16.setPrice(new BigDecimal("25000.00"));
                 service16.setBookingType(BookingType.HOURLY);
-                service16.setImageUrl("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80");
+                service16.setImageUrl("https://images.unsplash.com/photo-1525362081669-2b476bb628c3?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service16);
 
                 Service service17 = new Service();
@@ -324,7 +324,7 @@ public class DataSeeder {
                 service17.setLocation("Hyderabad");
                 service17.setPrice(new BigDecimal("40000.00"));
                 service17.setBookingType(BookingType.DAILY);
-                service17.setImageUrl("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80");
+                service17.setImageUrl("https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service17);
                 
                 Service service18 = new Service();
@@ -335,7 +335,7 @@ public class DataSeeder {
                 service18.setLocation("Bangalore");
                 service18.setPrice(new BigDecimal("18000.00"));
                 service18.setBookingType(BookingType.HOURLY);
-                service18.setImageUrl("https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80");
+                service18.setImageUrl("https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=400&q=80");
                 serviceRepository.save(service18);
 
                 // Sample Booking
